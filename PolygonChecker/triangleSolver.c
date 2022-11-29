@@ -1,6 +1,10 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <math.h>
+#include <string.h>
 
 #include "triangleSolver.h"
 
@@ -13,16 +17,21 @@
 //Report the perimiter of the shape, and if it is a rectangle, report the area. To create the rectangle, 
 //determine which corner each point is by calculation, then connect each corner in order. This eliminates the possibility of lines crossing.
 
-char* analyzeTriangle(int side1, int side2, int side3) {
+char* analyzeTriangle(double side1, double side2, double side3) {
 	char* result = "";
+	char* buffer = "";
+	double angles = -1;
+	int anglesInt = -1;
 
 	if (side1 <= 0 || side2 <= 0 || side3 <= 0)				//triangle sides can't be less than or equal to zero
 	{
-	result = "Not a triangle";
+		result = "Not a triangle";
+		return result;
 	}														//a triangle is valid if it satisfies three conditions: (a + b > c) (a + c > b) (b + c > a)
-	else if(side1 + side2 > side3 || side2 + side3 > side1 || side1 + side3 > side2)
+	else if(side1 + side2 < side3 || side2 + side3 < side1 || side1 + side3 < side2)
 	{
-		result = "Not a triagnle";
+		result = "Not a triangle";
+		return result;
 	}
 	else if (side1 == side2 && side1 == side3)				//all equal sides == equilateral triangle
 	{			
@@ -39,8 +48,14 @@ char* analyzeTriangle(int side1, int side2, int side3) {
 		result = "Scalene triangle";
 	}
 
-	int angles = (side2^2 + side3^2 - side1^2) / (2*(side2 + side3));
-	
+	angles = ((pow(side2, 2)) + (pow(side3, 2))) - ((pow(side1, 2)) / (2*side2*side3));	//cosine law for angle 1
+	anglesInt = angles;
 
+	//_itoa(anglesInt, &buffer, 10);														//works for int to char, not sure about double value
+
+	//figure out how to add buffer string onto end of result string with a whitespace character in between
+	
+	//then, solve for 2 other angles and add them onto the end of the string as well (with spaces and labels i.e. angle 1 = "" angle 2 = "" etc.)
+	
 	return result;
 }
