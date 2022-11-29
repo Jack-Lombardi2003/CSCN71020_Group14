@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <math.h>
 
 #include "triangleSolver.h"
 
@@ -14,11 +15,14 @@
 
 char* analyzeTriangle(int side1, int side2, int side3) {
 	char* result = "";
-															//a triangle is valid if it satisfies three conditions: (a + b > c) (a + c > b) (b + c > a)
 
 	if (side1 <= 0 || side2 <= 0 || side3 <= 0)				//triangle sides can't be less than or equal to zero
-	{			
-		result = "Not a triangle";
+	{
+	result = "Not a triangle";
+	}														//a triangle is valid if it satisfies three conditions: (a + b > c) (a + c > b) (b + c > a)
+	else if(side1 + side2 > side3 || side2 + side3 > side1 || side1 + side3 > side2)
+	{
+		result = "Not a triagnle";
 	}
 	else if (side1 == side2 && side1 == side3)				//all equal sides == equilateral triangle
 	{			
@@ -34,6 +38,9 @@ char* analyzeTriangle(int side1, int side2, int side3) {
 	{													
 		result = "Scalene triangle";
 	}
+
+	int angles = (side2^2 + side3^2 - side1^2) / (2*(side2 + side3));
+	
 
 	return result;
 }
