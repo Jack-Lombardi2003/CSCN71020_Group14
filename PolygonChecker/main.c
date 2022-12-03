@@ -3,8 +3,9 @@
 
 #include "main.h"
 #include "triangleSolver.h"
+#include "rectangleSolver.h"
 
-//Taiyo Suzuki, Jack Lombardi, Logan Haiser
+//Taiyo Suzuki, Jack Lombardi
 //December 2022
 //Write a program with 2 functionalities:
 //1. Accept 3 user input numbers, check if they make a triangle, and if they do, display what type of triangle it is 
@@ -16,8 +17,11 @@
 int side = 0;
 
 int main() {
+
 	bool continueProgram = true;
+
 	while (continueProgram) {
+
 		printWelcome();
 
 		int shapeChoice = printShapeMenu();
@@ -27,17 +31,26 @@ int main() {
 		case 0:																								//case 0: exit (written as case 0)
 			continueProgram = false;
 			break;
+
 		case 1:																								//case 1: triangle checking
-			printf_s("Triangle selected.\n");
+			printf_s("\nTriangle selected.\n");
 			int triangleSides[3] = { 0, 0, 0 };
 			int* triangleSidesPtr = getTriangleSides(triangleSides);
 			//printf_s("! %d\n", triangleSidesPtr[0]);
 			char* result = analyzeTriangle(triangleSidesPtr[0], triangleSidesPtr[1], triangleSidesPtr[2]);
 			printf_s("%s\n", result);
 			break;
+
 		case 2:																								//case 2: rectangle checking
 			printf_s("Rectangle selected.\n");
+			int rectangleCorners[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
+			int* rectangleCornersPtr = getRectangleCorners(rectangleCorners);
+			//printf_s("! %d\n", triangleSidesPtr[0]);
+			char* result2 = analyzeRectangle(rectangleCornersPtr[0], rectangleCornersPtr[1], rectangleCornersPtr[2], rectangleCornersPtr[3], 
+				rectangleCornersPtr[4], rectangleCornersPtr[5], rectangleCornersPtr[6], rectangleCornersPtr[7]);
+			printf_s("%s\n", result2);
 			break;
+
 		default:
 			printf_s("Invalid value entered.\n");															//default case (number input other than 0-2)
 			break;
@@ -62,17 +75,26 @@ int printShapeMenu() {																						//print function menu
 
 	int shapeChoice;
 
-	printf_s("Enter number: ");
+	printf_s("\nEnter number\n>");
 	scanf_s("%1o", &shapeChoice);
 
 	return shapeChoice;
 }
 
 int* getTriangleSides(int* triangleSides) {																	//get triangle input
-	printf_s("Enter the three sides of the triangle: ");
+	printf_s("Enter the three sides of the triangle\n>");
 	for (int i = 0; i < 3; i++)
 	{
 		scanf_s("%d", &triangleSides[i]);
 	}
 	return triangleSides;
+}
+
+int* getRectangleCorners(int* rectangleCorners) {																	//get triangle input
+	printf_s("Enter the corner point values (x, y) one at a time, x then y. \nExample: points - (1,2) (3,4) (5,6) (7,8) input - 1 2 3 4 5 6 7 8\n>");
+	for (int i = 0; i < 8; i++)
+	{
+		scanf_s("%d", &rectangleCorners[i]);
+	}
+	return rectangleCorners;
 }
