@@ -9,4 +9,4 @@
 //Report the perimiter of the shape, and if it is a rectangle, report the area. To create the rectangle, 
 //determine which corner each point is by calculation, then connect each corner in order. This eliminates the possibility of lines crossing.
 
-char* analyzeRectangle();
+char* analyzeRectangle(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
