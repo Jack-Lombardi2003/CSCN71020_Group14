@@ -68,11 +68,11 @@ char* analyzeTriangle(double side1, double side2, double side3) {
 	int newBufSize = strlen(result) + strlen(angleLabel) + strlen(angleBuffer1) + strlen(angleBuffer2) + strlen(angleBuffer3)+1;
 	char* resultBuffer = (char*)malloc(newBufSize);											//create new buffer and allocate memory
 
-	strcpy(resultBuffer, result);
+	strcpy(resultBuffer, result);															//copy triangle type (stored in result) and angles to buffer
 	strcat(resultBuffer, angleLabel);
 	strcat(resultBuffer, angleBuffer1);
 	strcat(resultBuffer, angleBuffer2);
 	strcat(resultBuffer, angleBuffer3);
 	
-	return resultBuffer;
+	return resultBuffer;																	//return buffer containing entire string
 }
