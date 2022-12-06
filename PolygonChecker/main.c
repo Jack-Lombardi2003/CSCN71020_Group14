@@ -38,25 +38,29 @@ int main() {
 
 		case 1:																								//case 1: triangle checking
 			printf_s("\nTriangle selected.\n");
+
 			int triangleSides[3] = { 0, 0, 0 };
-			int* triangleSidesPtr = getTriangleSides(triangleSides);
-			//printf_s("! %d\n", triangleSidesPtr[0]);
-			char* result = analyzeTriangle(triangleSidesPtr[0], triangleSidesPtr[1], triangleSidesPtr[2]);
-			printf_s("%s\n", result);
+			int* triangleSidesPtr = getTriangleSides(triangleSides);										//get input
+
+			char* result = analyzeTriangle(triangleSidesPtr[0], triangleSidesPtr[1], triangleSidesPtr[2]);	//do calculation
+
+			printf_s("%s\n", result);																		//print result
 			break;
 
 		case 2:																								//case 2: rectangle checking
 			printf_s("\nRectangle selected.\n");
+
 			int rectangleCorners[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
-			int* rectangleCornersPtr = getRectangleCorners(rectangleCorners);
-			//printf_s("! %d\n", triangleSidesPtr[0]);
+			int* rectangleCornersPtr = getRectangleCorners(rectangleCorners);								//get input
+
 			char* result2 = analyzeRectangle(rectangleCornersPtr[0], rectangleCornersPtr[1], rectangleCornersPtr[2], rectangleCornersPtr[3], 
-				rectangleCornersPtr[4], rectangleCornersPtr[5], rectangleCornersPtr[6], rectangleCornersPtr[7]);
-			printf_s("%s\n", result2);
+				rectangleCornersPtr[4], rectangleCornersPtr[5], rectangleCornersPtr[6], rectangleCornersPtr[7]);	//do calculation
+
+			printf_s("%s\n", result2);																		//print result
 			break;
 
 		default:
-			printf_s("Invalid value entered.\n");															//default case (number input other than 0-2)
+			printf_s("Invalid value entered.\n");															//number input other than 0-2 is invalid
 			break;
 		}
 	}
@@ -79,7 +83,7 @@ int printShapeMenu() {																						//print function menu
 
 	int shapeChoice;
 
-	printf_s("\nEnter number\n>");
+	printf_s("\nEnter number\n>");																			//get function choice
 	scanf_s("%1o", &shapeChoice);
 
 	return shapeChoice;
@@ -99,7 +103,7 @@ int* getTriangleSides(int* triangleSides) {																	//get triangle input
 	return triangleSides;
 }
 
-int* getRectangleCorners(int* rectangleCorners) {															//get triangle input
+int* getRectangleCorners(int* rectangleCorners) {															//get rectangle input
 	printf_s("Enter the corner point values (x, y) one at a time, x then y. \nExample: points - (1,2) (3,4) (5,6) (7,8) input - 1 2 3 4 5 6 7 8\n>");
 	for (int i = 0; i < 8; i++)
 	{

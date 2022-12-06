@@ -48,7 +48,7 @@ char* analyzeTriangle(double side1, double side2, double side3) {
 		result = "\nScalene triangle";
 	}
 
-	angle1 = ((pow(side2, 2)) + (pow(side3, 2))) - ((pow(side1, 2)) / (2 * side2 * side3));		//cosine law for angle 1
+	angle1 = ((pow(side2, 2)) + (pow(side3, 2))) - ((pow(side1, 2)) / (2 * side2 * side3));	//cosine law for angle 1
 
 	char* angleBuffer1 = malloc(sizeof(char) * BUFFER_SIZE);
 	snprintf(angleBuffer1, sizeof(angleBuffer1), " %.2f,", angle1);							//write angle 1 to string
