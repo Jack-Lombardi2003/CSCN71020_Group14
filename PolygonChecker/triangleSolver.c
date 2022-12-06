@@ -28,27 +28,27 @@ char* analyzeTriangle(double side1, double side2, double side3) {
 		result = "Not a triangle";
 		return result;
 	}													//a triangle is valid if it satisfies three conditions: (a + b > c) (a + c > b) (b + c > a)
-	else if(side1 + side2 < side3 || side2 + side3 < side1 || side1 + side3 < side2)
+	else if (side1 + side2 < side3 || side2 + side3 < side1 || side1 + side3 < side2)
 	{
 		result = "Not a triangle";
 		return result;
 	}
 	else if (side1 == side2 && side1 == side3)			//all equal sides == equilateral triangle
-	{			
+	{
 		result = "\nEquilateral triangle";
 	}
-	else if ((side1 == side2 && side1 != side3) || 
-		(side1 == side3 && side1 != side2) || 
+	else if ((side1 == side2 && side1 != side3) ||
+		(side1 == side3 && side1 != side2) ||
 		(side2 == side3 && side2 != side1))				//2 sides the same == isosceles triangle
 	{
 		result = "\nIsosceles triangle";
 	}
 	else												//all other triangles are scalene
-	{													
+	{
 		result = "\nScalene triangle";
 	}
 
-	angle1 = ((pow(side2, 2)) + (pow(side3, 2))) - ((pow(side1, 2)) / (2*side2*side3));		//cosine law for angle 1
+	angle1 = ((pow(side2, 2)) + (pow(side3, 2))) - ((pow(side1, 2)) / (2 * side2 * side3));		//cosine law for angle 1
 
 	char* angleBuffer1 = malloc(sizeof(char) * BUFFER_SIZE);
 	snprintf(angleBuffer1, sizeof(angleBuffer1), " %.2f,", angle1);							//write angle 1 to string
@@ -65,7 +65,7 @@ char* analyzeTriangle(double side1, double side2, double side3) {
 
 	char* angleLabel = "\nInterior angles:";												//for output (once all strings are added together, output should look like "Interior angles: x, y, z")
 
-	int newBufSize = strlen(result) + strlen(angleLabel) + strlen(angleBuffer1) + strlen(angleBuffer2) + strlen(angleBuffer3)+1;
+	int newBufSize = sizeof(result) + sizeof(angleLabel) + sizeof(angleBuffer1) + sizeof(angleBuffer2) + sizeof(angleBuffer3) + 1;
 	char* resultBuffer = (char*)malloc(newBufSize);											//create new buffer and allocate memory
 
 	strcpy(resultBuffer, result);															//copy triangle type (stored in result) and angles to buffer
@@ -73,6 +73,6 @@ char* analyzeTriangle(double side1, double side2, double side3) {
 	strcat(resultBuffer, angleBuffer1);
 	strcat(resultBuffer, angleBuffer2);
 	strcat(resultBuffer, angleBuffer3);
-	
+
 	return resultBuffer;																	//return buffer containing entire string
 }

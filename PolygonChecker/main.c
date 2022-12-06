@@ -2,6 +2,8 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include <ctype.h>
 
 #include "main.h"
 #include "triangleSolver.h"
@@ -44,7 +46,7 @@ int main() {
 			break;
 
 		case 2:																								//case 2: rectangle checking
-			printf_s("Rectangle selected.\n");
+			printf_s("\nRectangle selected.\n");
 			int rectangleCorners[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
 			int* rectangleCornersPtr = getRectangleCorners(rectangleCorners);
 			//printf_s("! %d\n", triangleSidesPtr[0]);
@@ -87,16 +89,25 @@ int* getTriangleSides(int* triangleSides) {																	//get triangle input
 	printf_s("Enter the three sides of the triangle\n>");
 	for (int i = 0; i < 3; i++)
 	{
-		scanf_s("%d", &triangleSides[i]);
+		if (scanf_s("%d", &triangleSides[i]) == 0)
+		{
+			printf_s("\nInvalid input. Please try again\n");												//check if input is an int
+			exit(1);
+		}
 	}
+
 	return triangleSides;
 }
 
-int* getRectangleCorners(int* rectangleCorners) {																	//get triangle input
+int* getRectangleCorners(int* rectangleCorners) {															//get triangle input
 	printf_s("Enter the corner point values (x, y) one at a time, x then y. \nExample: points - (1,2) (3,4) (5,6) (7,8) input - 1 2 3 4 5 6 7 8\n>");
 	for (int i = 0; i < 8; i++)
 	{
-		scanf_s("%d", &rectangleCorners[i]);
+		if (scanf_s("%d", &rectangleCorners[i]) == 0)
+		{
+			printf_s("\nInvalid input. Please try again\n");												//check if input is an int
+			exit(1);
+		}
 	}
 	return rectangleCorners;
 }
