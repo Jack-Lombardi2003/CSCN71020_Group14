@@ -50,23 +50,29 @@ char* analyzeTriangle(double side1, double side2, double side3) {
 
 	angle1 = ((pow(side2, 2)) + (pow(side3, 2))) - ((pow(side1, 2)) / (2*side2*side3));		//cosine law for angle 1
 
-	angle2 = ((pow(side1, 2)) + (pow(side3, 2))) - ((pow(side2, 2)) / (2 * side1 * side3));	//cosine law for angle 2
-
-	angle3 = ((pow(side2, 2)) + (pow(side1, 2))) - ((pow(side3, 2)) / (2 * side2 * side1));	//cosine law for angle 3
-
-	char* angleLabel = "\nInterior angles:";												//for output (once all strings are added together, 
-																							//should look like - Interior angles: x, y, z
 	char* angleBuffer1 = malloc(sizeof(char) * BUFFER_SIZE);
 	snprintf(angleBuffer1, sizeof(angleBuffer1), " %.2f,", angle1);							//write angle 1 to string
+
+	angle2 = ((pow(side1, 2)) + (pow(side3, 2))) - ((pow(side2, 2)) / (2 * side1 * side3));	//cosine law for angle 2
 
 	char* angleBuffer2 = malloc(sizeof(char) * BUFFER_SIZE);
 	snprintf(angleBuffer2, sizeof(angleBuffer2), " %.2f,", angle2);							//write angle 2 to string
 
+	angle3 = ((pow(side2, 2)) + (pow(side1, 2))) - ((pow(side3, 2)) / (2 * side2 * side1));	//cosine law for angle 3
+
 	char* angleBuffer3 = malloc(sizeof(char) * BUFFER_SIZE);
 	snprintf(angleBuffer3, sizeof(angleBuffer3), " %.2f", angle3);							//write angle 3 to string
 
+	char* angleLabel = "\nInterior angles:";												//for output (once all strings are added together, output should look like "Interior angles: x, y, z")
 
-	//figure out how to add strings together and send to result and triangle checker is finished.
+	int newBufSize = strlen(result) + strlen(angleLabel) + strlen(angleBuffer1) + strlen(angleBuffer2) + strlen(angleBuffer3)+1;
+	char* resultBuffer = (char*)malloc(newBufSize);											//create new buffer and allocate memory
+
+	strcpy(resultBuffer, result);
+	strcat(resultBuffer, angleLabel);
+	strcat(resultBuffer, angleBuffer1);
+	strcat(resultBuffer, angleBuffer2);
+	strcat(resultBuffer, angleBuffer3);
 	
-	return result;
+	return resultBuffer;
 }
