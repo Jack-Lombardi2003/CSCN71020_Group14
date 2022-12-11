@@ -26,5 +26,29 @@ char* analyzeRectangle(double x1, double y1, double x2, double y2, double x3, do
 	double xCoords[NUMBER_OF_POINTS] = { x1, x2, x3, x4 };
 	double yCoords[NUMBER_OF_POINTS] = { y1, y2, y3, y4 };
 
+	double side1 = x1 + x2 && y1 + y2; 
+	double side2 = x2 + x3 && y2 + y3;
+	double side3 = x3 + x4 && y3 + y4;
+	double side4 = x4 + x1 && y4 + y1;
+
+	if (x1 <= 0 || x2 <= 0 || x3 <= 0 || x4 <= 0 || y1 <= 0 || y2 <= 0 || y3 <= 0 || y4 <= 0)			//rectangle points can't be less than or equal to zero
+	{
+		result = "Not a rectangle";
+		return result;
+	}
+	else if(side1 == side2 && side2 == side3 && side3 == side4 && side4 == side1)
+	{
+		result = "\nYou Entered a Square";
+		return result;
+	}
+	else if(side1 == side3 && side2 == side4)
+	{
+		double rectangleArea = side1 * side2;
+		result = "\nYou Entered a Rectangle";
+		return result;
+		printf("\n%d", rectangleArea);
+	}
+
+
 	return result;
 }

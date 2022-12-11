@@ -76,3 +76,4 @@ char* analyzeTriangle(double side1, double side2, double side3) {
 
 	return resultBuffer;																	//return buffer containing entire string
 }
+
